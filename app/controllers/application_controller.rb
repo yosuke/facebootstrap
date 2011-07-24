@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
       oauth_token = @signed_request[:oauth_token]
       if user_id
         if oauth_token
-          user = User.where(facebook_user_id: user_id).first
+          user = User.where(:facebook_user_id => user_id).first
           if user
             user.update_oauth_token(oauth_token)
           else
